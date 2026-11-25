@@ -326,4 +326,239 @@ Je ne te demande pas d'être d'accord avec tout ce que je ressens. Je te demande
 <label for="q0">Comment aimerais-tu que nous gérions nos disputes sans menacer systématiquement notre relation ?</label>
 <textarea id="q0"></textarea>
 
-<label for="q1">Qu'est-ce qui pourra
+
+<label for="q1">Qu'est-ce qui pourrait nous aider à retrouver une intimité dans laquelle nous nous sentons tous les deux respectés et épanouis ?</label>
+<textarea id="q1"></textarea>
+
+<label for="q2">Quelles sont les choses que chacun de nous devrait changer pour que notre relation soit plus saine ?</label>
+<textarea id="q2"></textarea>
+
+<p style="margin-top:20px">
+<button class="btn" id="qs">M'envoyer mes réponses</button>
+<button class="btn alt" id="qk">Continuer sans répondre</button>
+</p>
+
+<p id="qe" style="color:var(--bd2)"></p>
+
+<div class="fin" id="fin" hidden>
+<p>${C.final}</p>
+<p class="sc" style="font-size:1.8rem;color:var(--ti)">${C.fin}</p>
+</div>
+</section>
+`;
+
+function show(id){
+ cur=id;
+ $$(".v").forEach(v=>v.classList.toggle("on",v.id===id));
+ window.scrollTo(0,0);
+
+ $("#bar").hidden=!/^(home|r\d)$/.test(id);
+ $("#back").textContent=id==="home"?"‹ Début":"‹ Accueil";
+
+ if(/^r\d$/.test(id)){
+  seen.add(id);
+  $$(".card").forEach(c=>c.classList.toggle("seen",seen.has(c.dataset.go)));
+  $$(".n29 button").forEach(b=>{
+   const i=Number(b.dataset.c);
+   if(seen.has("r5") && b.dataset.opened==="yes") b.classList.add("seen");
+  });
+ }
+
+ $("#pg b").style.width=(seen.size/6*100)+"%";
+}
+
+$("#back").onclick=()=>show(cur==="home"?"wait":"home");
+
+document.addEventListener("click",e=>{
+ const t=e.target.closest("[data-go],[data-ph],[data-c]");
+ if(!t)return;
+
+ const o=$("#ov");
+
+ if(t.dataset.go){
+  show(t.dataset.go);
+  return;
+ }
+
+ if(t.dataset.ph!==undefined){
+  const p=ALL[Number(t.dataset.ph)];
+  o.innerHTML=p.s
+   ?`<div><img src="${p.s}" alt="${p.c}"><p class="cap">${p.c}</p></div>`
+   :`<div class="msg">${p.c}<br><small style="margin-top:10px">Photo à ajouter</small></div>`;
+ }else{
+  const i=Number(t.dataset.c);
+  const r=C.raisons[i];
+  t.dataset.opened="yes";
+  t.classList.add("seen");
+  o.innerHTML=`<div class="msg"><small>${r[0]}</small>${r[1]}</div>`;
+ }
+
+ o.hidden=false;
+});
+
+$("#ov").onclick=()=>$("#ov").hidden=true;
+
+/* COMPTE À REBOURS */
+const f2=n=>String(n).padStart(2,"0");
+let iv;
+
+function tick(){
+ const d=T-Date.now();
+ const open=d<=0||location.hash==="#apercu";
+ const b=$("#go");
+
+ if(open){
+  if(!b.dataset.o){
+   b.dataset.o="1";
+   $("#wt").textContent=`Joyeux anniversaire, ${C.prenom} !`;
+   $("#ws").textContent="Ta petite porte est ouverte.";
+   $("#door").classList.add("o");
+   b.disabled=false;
+   b.textContent="ENTRER DANS TON UNIVERS";
+   b.style.background="var(--or)";
+  }
+  clearInterval(iv);
+  return;
+ }
+
+ $("#d").textContent=Math.floor(d/86400000);
+ $("#h").textContent=f2(Math.floor(d/3600000)%24);
+ $("#m").textContent=f2(Math.floor(d/60000)%60);
+ $("#s").textContent=f2(Math.floor(d/1000)%60);
+}
+
+$("#go").onclick=()=>show("home");
+
+/* PETITES LUMIÈRES */
+for(let i=0;i<14;i++){
+ const s=document.createElement("span");
+ s.className="dot";
+ const z=3+Math.random()*7;
+ s.style.cssText=
+ `left:${Math.random()*100}%;
+ width:${z}px;
+ height:${z}px;
+ animation-duration:${14+Math.random()*18}s;
+ animation-delay:-${Math.random()*20}s`;
+ $("#wait").append(s);
+}
+
+/* LECTEUR AUDIO */
+const au=$("#au");
+
+if(au){
+ const f=s=>isFinite(s)
+  ?Math.floor(s/60)+":"+f2(Math.floor(s%60))
+  :"0:00";
+
+ $("#ap").onclick=()=>{
+  if(au.paused){
+   au.play().catch(()=>{
+    $("#ae").textContent="Impossible de lire l'audio. Vérifie le fichier et réessaie.";
+   });
+  }else{
+   au.pause();
+  }
+ };
+
+ au.onplay=()=>$("#ap").textContent="❚❚";
+ au.onpause=()=>$("#ap").textContent="▶";
+ au.onerror=()=>$("#ae").textContent="Le message vocal est introuvable.";
+
+ au.onloadedmetadata=()=>{
+  $("#ad").textContent=f(au.duration);
+ };
+
+ au.ontimeupdate=()=>{
+  $("#at").textContent=f(au.currentTime);
+  $("#ar").value=au.duration
+   ?au.currentTime/au.duration*100
+   :0;
+ };
+
+ $("#ar").oninput=e=>{
+  if(au.duration) au.currentTime=e.target.value/100*au.duration;
+ };
+
+ $("#arp").onclick=()=>{
+  au.currentTime=0;
+  au.play().catch(()=>{});
+ };
+}
+
+/* SAUVEGARDE LOCALE DES RÉPONSES */
+const Q=[
+ "Gestion des disputes",
+ "Intimité et attentes",
+ "Changements pour une relation plus saine"
+];
+
+try{
+ [0,1,2].forEach(i=>{
+  $("#q"+i).value=localStorage.getItem("astride_q"+i)||"";
+ });
+}catch(e){}
+
+$$("textarea").forEach((t,i)=>{
+ t.oninput=()=>{
+  try{
+   localStorage.setItem("astride_q"+i,t.value);
+  }catch(e){}
+ };
+});
+
+/* AFFICHAGE DU MESSAGE FINAL */
+$("#qk").onclick=()=>{
+ $("#fin").hidden=false;
+ $("#fin").scrollIntoView({behavior:"smooth"});
+};
+
+/* ENVOI WHATSAPP */
+$("#qs").onclick=()=>{
+ const answers=[0,1,2].map(i=>$("#q"+i).value.trim());
+
+ if(!answers.some(Boolean)){
+  $("#qe").textContent="Tu n'as encore écrit aucune réponse. Tu peux aussi continuer sans répondre.";
+  return;
+ }
+
+ const message=
+ `Bonjour, voici mes réponses 💌\n\n`+
+ Q.map((q,i)=>
+  `${q} : ${answers[i]||"Je préfère ne pas répondre."}`
+ ).join("\n\n");
+
+ const url=
+ "https://wa.me/"+C.whatsapp+"?text="+encodeURIComponent(message);
+
+ window.open(url,"_blank");
+
+ $("#fin").hidden=false;
+ $("#fin").scrollIntoView({behavior:"smooth"});
+};
+
+/* DÉMARRAGE */
+function start(){
+ show("wait");
+ tick();
+ iv=setInterval(tick,1000);
+}
+
+if(C.motdepasse){
+ show("gate");
+
+ $("#pb").onclick=()=>{
+  if($("#pw").value===C.motdepasse){
+   start();
+  }else{
+   $("#pe").textContent="Ce n'est pas le bon mot de passe.";
+  }
+ };
+}else{
+ start();
+}
+
+</script>
+</body>
+</html>
+
