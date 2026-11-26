@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="fr">
 <head>
@@ -7,7 +6,6 @@
 <meta name="robots" content="noindex,nofollow">
 <title>ASTRIDE — Une histoire qui continue...</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@400;500&family=Caveat:wght@500&display=swap">
-
 <style>
 :root{--bd:#702C3C;--bd2:#923E53;--cr:#FAF5EF;--ro:#E9C8C9;--or:#C6A36A;--bg:#FAF5EF;--card:#fff;--ink:#38282B;--ti:#702C3C;--line:#E9C8C9;box-sizing:border-box;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#25131a;--card:#341f28;--ink:#f1e4e0;--ti:#E9C8C9;--line:#5a3340}}
@@ -59,7 +57,7 @@ button{font:inherit;cursor:pointer;color:inherit}
 .ph:nth-child(6n+1){grid-column:span 4;grid-row:span 3;--r:-1.2deg}
 .ph:nth-child(3n+2){--r:1.5deg}
 .ph:nth-child(5n+4){grid-column:span 3}
-.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.ph img,.ph video{width:100%;height:100%;object-fit:cover;display:block}
 .note{border-left:3px solid var(--or);background:var(--card);padding:14px 16px;margin:14px 0;border-radius:0 12px 12px 0}
 .paper{background:#FAF5EF;color:#38282B;padding:30px 24px;border-radius:4px;box-shadow:0 6px 24px #0003;white-space:pre-line;font-family:"Cormorant Garamond",Georgia,serif;font-size:1.2rem;line-height:1.65;border-top:4px solid var(--or)}
 .paper .sc{display:block;color:#702C3C;margin-top:14px}
@@ -75,7 +73,7 @@ button{font:inherit;cursor:pointer;color:inherit}
 .msg{background:#FAF5EF;color:#38282B;border-radius:18px;padding:30px 24px;max-width:420px;text-align:center;border:1px solid var(--or);animation:fp .6s ease both;font-family:"Cormorant Garamond",serif;font-size:1.35rem;line-height:1.5}
 .msg small{display:block;font:.8rem "DM Sans",sans-serif;color:#923E53;margin-bottom:10px}
 @keyframes fp{from{transform:perspective(600px) rotateY(90deg);opacity:0}}
-#ov img{max-width:100%;max-height:78vh;border-radius:4px}
+#ov img,#ov video{max-width:100%;max-height:78vh;border-radius:4px}
 #ov .cap{color:#FAF5EF;text-align:center;margin-top:10px}
 label{display:block;margin:20px 0 6px;font-family:"Cormorant Garamond",serif;font-size:1.2rem;color:var(--ti)}
 textarea{width:100%;min-height:84px;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--card);color:var(--ink);font:inherit}
@@ -83,45 +81,44 @@ textarea{width:100%;min-height:84px;border:1px solid var(--line);border-radius:1
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
-
 <body>
-<header id="bar" hidden>
-<button id="back">‹ Accueil</button>
-<span id="pg"><b></b></span>
-</header>
-
+<header id="bar" hidden><button id="back">‹ Accueil</button><span id="pg"><b></b></span></header>
 <main id="app"></main>
 <div id="ov" hidden></div>
-
 <script>
-/* ============ CONFIGURATION ============ */
 const C={
  date:"2026-11-29T00:00:00+01:00",
  prenom:"Astride",
  surnom:"Lakata chou",
  whatsapp:"2290197827626",
-
- // Laisser vide si aucun mot de passe.
- // Attention : cette protection côté navigateur n'est pas une vraie sécurité.
  motdepasse:"",
-
- photos:Array.from({length:12},(_,i)=>({
-  s:"",
-  c:"Souvenir à ajouter — photo "+(i+1)
- })),
-
+ photos:[
+  {v:"plage.mp4",c:"Notre moment à la plage — toi en rouge, moi à côté de toi"},
+  {s:"pagne-rouge.jpg",c:"Assortis, comme toujours"},
+  {s:"pagne-vert.jpg",c:"En brousse, bras enlacés"},
+  {s:"ascenseur.jpg",c:"Un bisou volé dans l'ascenseur"},
+  {s:"eglise.jpg",c:"Une belle sortie, ensemble"},
+  {s:"ena-couple.jpg",c:"Là où tout a commencé — l'ENA"},
+  {s:"ena-elle-vert.jpg",c:"Toi à l'ENA, ton plus beau sourire"},
+  {s:"ena-elle-bleu.jpg",c:"En uniforme, concentrée"},
+  {s:"bague.jpg",c:"Un souvenir qui brille..."},
+  {s:"rose.jpg",c:"Simple et belle"},
+  {s:"fete.jpg",c:"En fête, toujours complices"},
+  {s:"enfance.jpg",c:"Petite Astride déjà..."}
+ ],
  rires:{
-  photos:Array.from({length:6},(_,i)=>({
-   s:"",
-   c:"Un de nos souvenirs — photo "+(i+1)
-  })),
+  photos:[
+   {s:"selfie-bouche.jpg",c:"Ta fameuse bouche en cœur"},
+   {s:"eventail.jpg",c:"Ta grimace avec l'éventail"},
+   {v:"mimiques.mp4",c:"Tes mimiques, je n'en peux plus 😂"},
+   {v:"bisou-maison.mp4",c:"Un bisou à la maison"}
+  ],
   anecdotes:[
    "Il y a des souvenirs qui n'ont pas besoin de longues explications pour nous faire sourire.",
    "Certaines discussions restent dans la mémoire, même longtemps après.",
    "Et puis il y a DCT… trois lettres qui ont leur propre histoire. 😅🤣"
   ]
  },
-
  lettre:`Mon Évidence,
 
 Lakata chou,
@@ -165,18 +162,14 @@ Merci pour les beaux moments, pour ton attention dans ces instants où tu me fai
 Joyeux anniversaire, Lakata chou.
 
 Profite de ta journée. Tu le mérites.`,
-
  signature:"Avec tendresse,",
-
  audio:"",
-
  raisons:[
   ["Ce que j'aime chez toi","Ton attention, dans ces moments où tu me fais sentir que je compte."],
   ["Ce que j'aime chez toi","Cette capacité que tu as de montrer ton amour, même sans forcément faire de grands discours."],
   ["Ce que j'aime chez toi","Les petites attentions qui, parfois, valent bien plus que de longues déclarations."],
   ["Ce que j'aime chez toi","Cette part de toi qui sait être douce et attachante."],
   ["Ce que j'aime chez toi","Le bonheur que me procurent les moments où je retrouve cette complicité entre nous."],
-
   ["Nos souvenirs","Qui aurait cru que deux personnes qui se voyaient en uniforme à l'ENA finiraient en couple ?"],
   ["Nos souvenirs","Nos débuts avaient quelque chose de particulier. Nous avions tellement de choses à nous raconter."],
   ["Nos souvenirs","Ces discussions qui nous accompagnaient jusqu'au petit matin."],
@@ -190,13 +183,11 @@ Profite de ta journée. Tu le mérites.`,
   ["Notre petit langage","Il y a des souvenirs qui n'ont besoin que de trois lettres pour revenir."],
   ["Notre petit langage","Certaines discussions restent dans la mémoire, même longtemps après."],
   ["Notre petit langage","Nos souvenirs ont parfois leur propre langage. DCT en est la preuve."],
-
   ["Mes souhaits pour toi","Une santé solide et une vie remplie de sérénité."],
   ["Mes souhaits pour toi","La réussite dans les projets qui te tiennent à cœur."],
   ["Mes souhaits pour toi","Des jours où tu n'auras pas besoin de cacher ton sourire."],
   ["Mes souhaits pour toi","De belles opportunités et le courage de saisir celles qui se présenteront à toi."],
   ["Mes souhaits pour toi","Un bonheur qui ne dépend pas uniquement des circonstances, mais aussi de la paix que tu trouveras en toi."],
-
   ["Ce que j'espère","J'aimerais que nous retrouvions le plaisir de parler pendant des heures."],
   ["Ce que j'espère","J'aimerais que nos conversations redeviennent des rendez-vous que nous attendons avec impatience."],
   ["Ce que j'espère","J'aimerais que nous puissions rire ensemble sans nous soucier du temps."],
@@ -204,361 +195,38 @@ Profite de ta journée. Tu le mérites.`,
   ["Ce que j'espère","J'aimerais que nos désaccords ne nous fassent jamais oublier le respect que nous nous devons."],
   ["Ce que j'espère","Et si nous avons encore de belles pages à écrire, j'espère qu'elles seront remplies de sincérité, de douceur et de complicité."]
  ],
-
  final:`Notre histoire n'a pas besoin d'être parfaite pour continuer à être précieuse. Elle mérite simplement que nous prenions soin de ce que nous construisons, avec sincérité, patience et attention.`,
-
  fin:"Joyeux anniversaire, ma Petite Maman. ❤️"
 };
-/* ============ FIN CONFIGURATION ============ */
-
 const $=s=>document.querySelector(s);
 const $$=s=>[...document.querySelectorAll(s)];
 const T=new Date(C.date).getTime();
 const seen=new Set();
 let cur="";
-
-const R=[
- ["r1","Nos premiers chapitres"],
- ["r2","Nos fous rires"],
- ["r3","Ce que mon cœur veut te dire"],
- ["r4","Écoute-moi"],
- ["r5","29 raisons de sourire"],
- ["r6","Ce que nous devons nous dire"]
-];
-
-const img=(p,i)=>`<button class="ph" data-ph="${i}" aria-label="${p.c}">${p.s?`<img src="${p.s}" alt="${p.c}" loading="lazy">`:`<span>Photo à ajouter</span>`}</button>`;
+const R=[["r1","Nos premiers chapitres"],["r2","Nos fous rires"],["r3","Ce que mon cœur veut te dire"],["r4","Écoute-moi"],["r5","29 raisons de sourire"],["r6","Ce que nous devons nous dire"]];
+const media=(p,i)=>p.v?`<video src="${p.v}" muted loop playsinline preload="metadata"></video>`:`<img src="${p.s}" alt="${p.c}" loading="lazy">`;
+const img=(p,i)=>`<button class="ph" data-ph="${i}" aria-label="${p.c}">${media(p,i)}</button>`;
 const gal=(a,k)=>`<div class="scrap">${a.map((p,i)=>img(p,k+i)).join("")}</div>`;
 const ALL=[...C.photos,...C.rires.photos];
-
 $("#app").innerHTML=`
-
-<section class="v" id="gate" style="text-align:center;padding-top:22vh">
-<h2>Un mot de passe ?</h2>
-<p>Cette page est un cadeau privé.</p>
-<input id="pw" type="password" aria-label="Mot de passe" style="padding:12px;border-radius:12px;border:1px solid var(--line);font:inherit;background:var(--card);color:var(--ink)">
-<p id="pe" style="color:var(--bd2);min-height:1.7em"></p>
-<button class="btn" id="pb">Entrer</button>
-</section>
-
-<section class="v" id="wait">
-<p class="sc">Pour ${C.prenom}</p>
-<h1 id="wt">Quelque chose de spécial t'attend, ${C.prenom}...</h1>
-<p id="ws">Une petite porte s'ouvrira pour toi le 29 novembre.</p>
-<div class="door" id="door">
-<i></i><i></i>
-<div class="cd" id="cd">
-<div><b id="d">0</b><small>jours</small></div>
-<div><b id="h">0</b><small>heures</small></div>
-<div><b id="m">0</b><small>minutes</small></div>
-<div><b id="s">0</b><small>secondes</small></div>
-</div>
-</div>
-<button class="btn" id="go" disabled style="background:var(--or);color:#38282B">Patience, mon Évidence... ❤️</button>
-</section>
-
-<section class="v" id="home">
-<h1>${C.prenom}, cette histoire mérite encore de belles pages...</h1>
-<p>Il y a des personnes qui rendent certains souvenirs inoubliables. Aujourd'hui, j'aimerais te faire revivre quelques-uns des nôtres. Ce petit univers est pour toi. Prends ton temps, souris, souviens-toi et profite de chaque instant.</p>
-<div class="g2">${R.map(r=>`<button class="card" data-go="${r[0]}">${r[1]}</button>`).join("")}</div>
-</section>
-
-<section class="v" id="r1">
-<h2>Tout a commencé quelque part...</h2>
-<p>Qui aurait cru que deux personnes qui se croisaient en uniforme à l'ENA finiraient un jour en couple ? En regardant ces images, je repense à cette rencontre et à tous les moments qui ont suivi. Voici quelques fragments de notre histoire.</p>
-${gal(C.photos,0)}
-</section>
-
-<section class="v" id="r2">
-<h2>Nos fous rires, nos petites folies...</h2>
-<p>Parce qu'aimer, ce n'est pas seulement échanger de beaux mots. C'est aussi rire pour rien, se taquiner, trouver des sujets de discussion à n'importe quelle heure et profiter de ces instants qui rendent la vie plus légère.</p>
-${gal(C.rires.photos,C.photos.length)}
-${C.rires.anecdotes.map(a=>`<div class="note">${a}</div>`).join("")}
-</section>
-
-<section class="v" id="r3">
-<h2>Quelques mots que je garde parfois au fond de moi...</h2>
-<div class="paper">${C.lettre}<span class="sc">${C.signature}</span></div>
-</section>
-
-<section class="v" id="r4">
-<h2>Cette fois, je préfère te le dire avec ma voix...</h2>
-<div class="pl">
-${C.audio?`
-<audio id="au" src="${C.audio}" preload="none"></audio>
-<button class="pb" id="ap" aria-label="Lecture">▶</button>
-<div class="row">
-<small id="at">0:00</small>
-<input type="range" id="ar" min="0" max="100" value="0" aria-label="Progression">
-<small id="ad">0:00</small>
-</div>
-<button class="btn alt" id="arp" style="margin-top:16px">Réécouter depuis le début</button>
-<p id="ae" style="color:var(--bd2)"></p>
-`:`
-<p class="sc">Mon message vocal arrive ici.</p>
-<p>[Emplacement réservé à l'enregistrement]</p>
-<button class="pb" disabled>▶</button>
-`}
-</div>
-</section>
-
-<section class="v" id="r5">
-<h2>29 petites choses que j'aimerais te rappeler.</h2>
-<p>Touche une carte. Elle s'ouvre pour toi.</p>
-<div class="n29">${C.raisons.map((r,i)=>`<button data-c="${i}" aria-label="Carte ${i+1}">${i+1}</button>`).join("")}</div>
-</section>
-
-<section class="v" id="r6">
-<h2>Ce que nous devons nous dire</h2>
-<p>Je ne veux pas que nous évitions les sujets difficiles. Je voudrais que nous apprenions à les aborder sans nous faire du mal.</p>
-
-<div class="note">
-J'aimerais que nous puissions parler de nos désaccords sans brandir systématiquement la séparation.
-
-J'aimerais que nos engagements soient traités avec considération, même lorsque nous sommes en colère.
-
-J'aimerais aussi que nous puissions parler librement de notre intimité, de nos attentes et de nos différences, sans pression ni jugement.
-
-Je ne te demande pas d'être d'accord avec tout ce que je ressens. Je te demande simplement que nous puissions nous écouter et chercher ensemble à comprendre ce qui nous manque.
-</div>
-
-<p>Si tu en as envie, j'aimerais connaître ton ressenti. Il n'y a pas de bonne ou de mauvaise réponse. Tu peux répondre librement, ou ne pas répondre du tout.</p>
-
-<label for="q0">Comment aimerais-tu que nous gérions nos disputes sans menacer systématiquement notre relation ?</label>
-<textarea id="q0"></textarea>
-
-
-<label for="q1">Qu'est-ce qui pourrait nous aider à retrouver une intimité dans laquelle nous nous sentons tous les deux respectés et épanouis ?</label>
-<textarea id="q1"></textarea>
-
-<label for="q2">Quelles sont les choses que chacun de nous devrait changer pour que notre relation soit plus saine ?</label>
-<textarea id="q2"></textarea>
-
-<p style="margin-top:20px">
-<button class="btn" id="qs">M'envoyer mes réponses</button>
-<button class="btn alt" id="qk">Continuer sans répondre</button>
-</p>
-
-<p id="qe" style="color:var(--bd2)"></p>
-
-<div class="fin" id="fin" hidden>
-<p>${C.final}</p>
-<p class="sc" style="font-size:1.8rem;color:var(--ti)">${C.fin}</p>
-</div>
-</section>
-`;
-
-function show(id){
- cur=id;
- $$(".v").forEach(v=>v.classList.toggle("on",v.id===id));
- window.scrollTo(0,0);
-
- $("#bar").hidden=!/^(home|r\d)$/.test(id);
- $("#back").textContent=id==="home"?"‹ Début":"‹ Accueil";
-
- if(/^r\d$/.test(id)){
-  seen.add(id);
-  $$(".card").forEach(c=>c.classList.toggle("seen",seen.has(c.dataset.go)));
-  $$(".n29 button").forEach(b=>{
-   const i=Number(b.dataset.c);
-   if(seen.has("r5") && b.dataset.opened==="yes") b.classList.add("seen");
-  });
- }
-
- $("#pg b").style.width=(seen.size/6*100)+"%";
-}
-
+<section class="v" id="gate" style="text-align:center;padding-top:22vh"><h2>Un mot de passe ?</h2><p>Cette page est un cadeau privé.</p><input id="pw" type="password" aria-label="Mot de passe" style="padding:12px;border-radius:12px;border:1px solid var(--line);font:inherit;background:var(--card);color:var(--ink)"><p id="pe" style="color:var(--bd2);min-height:1.7em"></p><button class="btn" id="pb">Entrer</button></section>
+<section class="v" id="wait"><p class="sc">Pour ${C.prenom}</p><h1 id="wt">Quelque chose de spécial t'attend, ${C.prenom}...</h1><p id="ws">Une petite porte s'ouvrira pour toi le 29 novembre.</p><div class="door" id="door"><i></i><i></i><div class="cd" id="cd"><div><b id="d">0</b><small>jours</small></div><div><b id="h">0</b><small>heures</small></div><div><b id="m">0</b><small>minutes</small></div><div><b id="s">0</b><small>secondes</small></div></div></div><button class="btn" id="go" disabled style="background:var(--or);color:#38282B">Patience, mon Évidence... ❤️</button></section>
+<section class="v" id="home"><h1>${C.prenom}, cette histoire mérite encore de belles pages...</h1><p>Il y a des personnes qui rendent certains souvenirs inoubliables. Aujourd'hui, j'aimerais te faire revivre quelques-uns des nôtres. Ce petit univers est pour toi. Prends ton temps, souris, souviens-toi et profite de chaque instant.</p><div class="g2">${R.map(r=>`<button class="card" data-go="${r[0]}">${r[1]}</button>`).join("")}</div></section>
+<section class="v" id="r1"><h2>Tout a commencé quelque part...</h2><p>Qui aurait cru que deux personnes qui se croisaient en uniforme à l'ENA finiraient un jour en couple ? En regardant ces images, je repense à cette rencontre et à tous les moments qui ont suivi. Voici quelques fragments de notre histoire.</p>${gal(C.photos,0)}</section>
+<section class="v" id="r2"><h2>Nos fous rires, nos petites folies...</h2><p>Parce qu'aimer, ce n'est pas seulement échanger de beaux mots. C'est aussi rire pour rien, se taquiner, trouver des sujets de discussion à n'importe quelle heure et profiter de ces instants qui rendent la vie plus légère.</p>${gal(C.rires.photos,C.photos.length)}${C.rires.anecdotes.map(a=>`<div class="note">${a}</div>`).join("")}</section>
+<section class="v" id="r3"><h2>Quelques mots que je garde parfois au fond de moi...</h2><div class="paper">${C.lettre}<span class="sc">${C.signature}</span></div></section>
+<section class="v" id="r4"><h2>Cette fois, je préfère te le dire avec ma voix...</h2><div class="pl">${C.audio?`<audio id="au" src="${C.audio}" preload="none"></audio><button class="pb" id="ap" aria-label="Lecture">▶</button><div class="row"><small id="at">0:00</small><input type="range" id="ar" min="0" max="100" value="0" aria-label="Progression"><small id="ad">0:00</small></div><button class="btn alt" id="arp" style="margin-top:16px">Réécouter depuis le début</button><p id="ae" style="color:var(--bd2)"></p>`:`<p class="sc">Mon message vocal arrive ici.</p><p>[Emplacement réservé à l'enregistrement]</p><button class="pb" disabled>▶</button>`}</div></section>
+<section class="v" id="r5"><h2>29 petites choses que j'aimerais te rappeler.</h2><p>Touche une carte. Elle s'ouvre pour toi.</p><div class="n29">${C.raisons.map((r,i)=>`<button data-c="${i}" aria-label="Carte ${i+1}">${i+1}</button>`).join("")}</div></section>
+<section class="v" id="r6"><h2>Ce que nous devons nous dire</h2><p>Je ne veux pas que nous évitions les sujets difficiles. Je voudrais que nous apprenions à les aborder sans nous faire du mal.</p><div class="note">J'aimerais que nous puissions parler de nos désaccords sans brandir systématiquement la séparation.<br><br>J'aimerais que nos engagements soient traités avec considération, même lorsque nous sommes en colère.<br><br>J'aimerais aussi que nous puissions parler librement de notre intimité, de nos attentes et de nos différences, sans pression ni jugement.<br><br>Je ne te demande pas d'être d'accord avec tout ce que je ressens. Je te demande simplement que nous puissions nous écouter et chercher ensemble à comprendre ce qui nous manque.</div><p>Si tu en as envie, j'aimerais connaître ton ressenti. Il n'y a pas de bonne ou de mauvaise réponse. Tu peux répondre librement, ou ne pas répondre du tout.</p><label for="q0">Comment aimerais-tu que nous gérions nos disputes sans menacer systématiquement notre relation ?</label><textarea id="q0"></textarea><label for="q1">Qu'est-ce qui pourrait nous aider à retrouver une intimité dans laquelle nous nous sentons tous les deux respectés et épanouis ?</label><textarea id="q1"></textarea><label for="q2">Quelles sont les choses que chacun de nous devrait changer pour que notre relation soit plus saine ?</label><textarea id="q2"></textarea><p style="margin-top:20px"><button class="btn" id="qs">M'envoyer mes réponses</button><button class="btn alt" id="qk">Continuer sans répondre</button></p><p id="qe" style="color:var(--bd2)"></p><div class="fin" id="fin" hidden><p>${C.final}</p><p class="sc" style="font-size:1.8rem;color:var(--ti)">${C.fin}</p></div></section>`;
+function show(id){cur=id;$$(".v").forEach(v=>v.classList.toggle("on",v.id===id));window.scrollTo(0,0);$("#bar").hidden=!/^(home|r\d)$/.test(id);$("#back").textContent=id==="home"?"‹ Début":"‹ Accueil";if(/^r\d$/.test(id)){seen.add(id);$$(".card").forEach(c=>c.classList.toggle("seen",seen.has(c.dataset.go)));}$$("#pg b").style.width=(seen.size/6*100)+"%";}
 $("#back").onclick=()=>show(cur==="home"?"wait":"home");
-
-document.addEventListener("click",e=>{
- const t=e.target.closest("[data-go],[data-ph],[data-c]");
- if(!t)return;
-
- const o=$("#ov");
-
- if(t.dataset.go){
-  show(t.dataset.go);
-  return;
- }
-
- if(t.dataset.ph!==undefined){
-  const p=ALL[Number(t.dataset.ph)];
-  o.innerHTML=p.s
-   ?`<div><img src="${p.s}" alt="${p.c}"><p class="cap">${p.c}</p></div>`
-   :`<div class="msg">${p.c}<br><small style="margin-top:10px">Photo à ajouter</small></div>`;
- }else{
-  const i=Number(t.dataset.c);
-  const r=C.raisons[i];
-  t.dataset.opened="yes";
-  t.classList.add("seen");
-  o.innerHTML=`<div class="msg"><small>${r[0]}</small>${r[1]}</div>`;
- }
-
- o.hidden=false;
-});
-
+document.addEventListener("click",e=>{const t=e.target.closest("[data-go],[data-ph],[data-c]");if(!t)return;const o=$("#ov");if(t.dataset.go){show(t.dataset.go);return;}if(t.dataset.ph!==undefined){const p=ALL[Number(t.dataset.ph)];o.innerHTML=p.v?`<div><video src="${p.v}" controls autoplay playsinline style="max-height:78vh"></video><p class="cap">${p.c}</p></div>`:p.s?`<div><img src="${p.s}" alt="${p.c}"><p class="cap">${p.c}</p></div>`:`<div class="msg">${p.c}</div>`;}else{const i=Number(t.dataset.c);const r=C.raisons[i];t.dataset.opened="yes";t.classList.add("seen");o.innerHTML=`<div class="msg"><small>${r[0]}</small>${r[1]}</div>`;}o.hidden=false;});
 $("#ov").onclick=()=>$("#ov").hidden=true;
-
-/* COMPTE À REBOURS */
-const f2=n=>String(n).padStart(2,"0");
-let iv;
-
-function tick(){
- const d=T-Date.now();
- const open=d<=0||location.hash==="#apercu";
- const b=$("#go");
-
- if(open){
-  if(!b.dataset.o){
-   b.dataset.o="1";
-   $("#wt").textContent=`Joyeux anniversaire, ${C.prenom} !`;
-   $("#ws").textContent="Ta petite porte est ouverte.";
-   $("#door").classList.add("o");
-   b.disabled=false;
-   b.textContent="ENTRER DANS TON UNIVERS";
-   b.style.background="var(--or)";
-  }
-  clearInterval(iv);
-  return;
- }
-
- $("#d").textContent=Math.floor(d/86400000);
- $("#h").textContent=f2(Math.floor(d/3600000)%24);
- $("#m").textContent=f2(Math.floor(d/60000)%60);
- $("#s").textContent=f2(Math.floor(d/1000)%60);
-}
-
+const f2=n=>String(n).padStart(2,"0");let iv;function tick(){const d=T-Date.now();const open=d<=0||location.hash==="#apercu";const b=$("#go");if(open){if(!b.dataset.o){b.dataset.o="1";$("#wt").textContent=`Joyeux anniversaire, ${C.prenom} !`;$("#ws").textContent="Ta petite porte est ouverte.";$("#door").classList.add("o");b.disabled=false;b.textContent="ENTRER DANS TON UNIVERS";b.style.background="var(--or)";}clearInterval(iv);return;}$("#d").textContent=Math.floor(d/86400000);$("#h").textContent=f2(Math.floor(d/3600000)%24);$("#m").textContent=f2(Math.floor(d/60000)%60);$("#s").textContent=f2(Math.floor(d/1000)%60);}
 $("#go").onclick=()=>show("home");
-
-/* PETITES LUMIÈRES */
-for(let i=0;i<14;i++){
- const s=document.createElement("span");
- s.className="dot";
- const z=3+Math.random()*7;
- s.style.cssText=
- `left:${Math.random()*100}%;
- width:${z}px;
- height:${z}px;
- animation-duration:${14+Math.random()*18}s;
- animation-delay:-${Math.random()*20}s`;
- $("#wait").append(s);
-}
-
-/* LECTEUR AUDIO */
-const au=$("#au");
-
-if(au){
- const f=s=>isFinite(s)
-  ?Math.floor(s/60)+":"+f2(Math.floor(s%60))
-  :"0:00";
-
- $("#ap").onclick=()=>{
-  if(au.paused){
-   au.play().catch(()=>{
-    $("#ae").textContent="Impossible de lire l'audio. Vérifie le fichier et réessaie.";
-   });
-  }else{
-   au.pause();
-  }
- };
-
- au.onplay=()=>$("#ap").textContent="❚❚";
- au.onpause=()=>$("#ap").textContent="▶";
- au.onerror=()=>$("#ae").textContent="Le message vocal est introuvable.";
-
- au.onloadedmetadata=()=>{
-  $("#ad").textContent=f(au.duration);
- };
-
- au.ontimeupdate=()=>{
-  $("#at").textContent=f(au.currentTime);
-  $("#ar").value=au.duration
-   ?au.currentTime/au.duration*100
-   :0;
- };
-
- $("#ar").oninput=e=>{
-  if(au.duration) au.currentTime=e.target.value/100*au.duration;
- };
-
- $("#arp").onclick=()=>{
-  au.currentTime=0;
-  au.play().catch(()=>{});
- };
-}
-
-/* SAUVEGARDE LOCALE DES RÉPONSES */
-const Q=[
- "Gestion des disputes",
- "Intimité et attentes",
- "Changements pour une relation plus saine"
-];
-
-try{
- [0,1,2].forEach(i=>{
-  $("#q"+i).value=localStorage.getItem("astride_q"+i)||"";
- });
-}catch(e){}
-
-$$("textarea").forEach((t,i)=>{
- t.oninput=()=>{
-  try{
-   localStorage.setItem("astride_q"+i,t.value);
-  }catch(e){}
- };
-});
-
-/* AFFICHAGE DU MESSAGE FINAL */
-$("#qk").onclick=()=>{
- $("#fin").hidden=false;
- $("#fin").scrollIntoView({behavior:"smooth"});
-};
-
-/* ENVOI WHATSAPP */
-$("#qs").onclick=()=>{
- const answers=[0,1,2].map(i=>$("#q"+i).value.trim());
-
- if(!answers.some(Boolean)){
-  $("#qe").textContent="Tu n'as encore écrit aucune réponse. Tu peux aussi continuer sans répondre.";
-  return;
- }
-
- const message=
- `Bonjour, voici mes réponses 💌\n\n`+
- Q.map((q,i)=>
-  `${q} : ${answers[i]||"Je préfère ne pas répondre."}`
- ).join("\n\n");
-
- const url=
- "https://wa.me/"+C.whatsapp+"?text="+encodeURIComponent(message);
-
- window.open(url,"_blank");
-
- $("#fin").hidden=false;
- $("#fin").scrollIntoView({behavior:"smooth"});
-};
-
-/* DÉMARRAGE */
-function start(){
- show("wait");
- tick();
- iv=setInterval(tick,1000);
-}
-
-if(C.motdepasse){
- show("gate");
-
- $("#pb").onclick=()=>{
-  if($("#pw").value===C.motdepasse){
-   start();
-  }else{
-   $("#pe").textContent="Ce n'est pas le bon mot de passe.";
-  }
- };
-}else{
- start();
-}
-
+for(let i=0;i<14;i++){const s=document.createElement("span");s.className="dot";const z=3+Math.random()*7;s.style.cssText=`left:${Math.random()*100}%;width:${z}px;height:${z}px;animation-duration:${14+Math.random()*18}s;animation-delay:-${Math.random()*20}s`;$("#wait").append(s);}
+const au=$("#au");if(au){const f=s=>isFinite(s)?Math.floor(s/60)+":"+f2(Math.floor(s%60)):"0:00";$("#ap").onclick=()=>{if(au.paused){au.play().catch(()=>{$("#ae").textContent="Impossible de lire l'audio.";});}else{au.pause();}};au.onplay=()=>$("#ap").textContent="❚❚";au.onpause=()=>$("#ap").textContent="▶";au.onerror=()=>$("#ae").textContent="Le message vocal est introuvable.";au.onloadedmetadata=()=>{$("#ad").textContent=f(au.duration);};au.ontimeupdate=()=>{$("#at").textContent=f(au.currentTime);$("#ar").value=au.duration?au.currentTime/au.duration*100:0;};$("#ar").oninput=e=>{if(au.duration)au.currentTime=e.target.value/100*au.duration;};$("#arp").onclick=()=>{au.currentTime=0;au.play().catch(()=>{});};}
+const Q=["Gestion des disputes","Intimité et attentes","Changements pour une relation plus saine"];try{[0,1,2].forEach(i=>{$("#q"+i).value=localStorage.getItem("astride_q"+i)||"";});}catch(e){}$$("textarea").forEach((t,i)=>{t.oninput=()=>{try{localStorage.setItem("astride_q"+i,t.value);}catch(e){}};});$("#qk").onclick=()=>{$("#fin").hidden=false;$("#fin").scrollIntoView({behavior:"smooth"});};$("#qs").onclick=()=>{const answers=[0,1,2].map(i=>$("#q"+i).value.trim());if(!answers.some(Boolean)){$("#qe").textContent="Tu n'as encore écrit aucune réponse. Tu peux aussi continuer sans répondre.";return;}const message=`Bonjour, voici mes réponses 💌\n\n`+Q.map((q,i)=>`${q} : ${answers[i]||"Je préfère ne pas répondre."}`).join("\n\n");const url="https://wa.me/"+C.whatsapp+"?text="+encodeURIComponent(message);window.open(url,"_blank");$("#fin").hidden=false;$("#fin").scrollIntoView({behavior:"smooth"});};function start(){show("wait");tick();iv=setInterval(tick,1000);}if(C.motdepasse){show("gate");$("#pb").onclick=()=>{if($("#pw").value===C.motdepasse){start();}else{$("#pe").textContent="Ce n'est pas le bon mot de passe.";}};}else{start();}
 </script>
 </body>
 </html>
-
