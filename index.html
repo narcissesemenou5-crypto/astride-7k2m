@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>ASTRIDE — Une histoire qui continue...</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@400;500&family=Caveat:wght@500&display=swap">
+<style>
+:root{--bd:#702C3C;--bd2:#923E53;--cr:#FAF5EF;--ro:#E9C8C9;--or:#C6A36A;--bg:#FAF5EF;--card:#fff;--ink:#38282B;--ti:#702C3C;--line:#E9C8C9;box-sizing:border-box;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#25131a;--card:#341f28;--ink:#f1e4e0;--ti:#E9C8C9;--line:#5a3340}}
+:root[data-theme="dark"]{--bg:#25131a;--card:#341f28;--ink:#f1e4e0;--ti:#E9C8C9;--line:#5a3340}
+html{height:100%}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 "DM Sans",system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
+h1,h2{font-family:"Cormorant Garamond",Georgia,serif;color:var(--ti);font-weight:600;line-height:1.15;margin:0 0 14px}
+h1{font-size:2.2rem}h2{font-size:1.9rem}p{margin:0 0 14px}
+.sc{font-family:Caveat,"Brush Script MT",cursive;font-size:1.5rem}
+.v{display:none;max-width:640px;margin:auto;padding:76px 22px 60px}
+.v.on{display:block;animation:fd .6s ease both}
+@keyframes fd{from{opacity:0}}
+button{font:inherit;cursor:pointer;color:inherit}
+.btn{display:inline-block;border:0;border-radius:99px;padding:14px 26px;background:var(--bd);color:var(--cr);font-weight:500}
+.btn.alt{background:transparent;border:1px solid var(--or);color:var(--ti)}
+.btn:disabled{opacity:.55;cursor:default}
+:focus-visible{outline:2px solid var(--or);outline-offset:3px}
+#bar{position:fixed;top:0;left:0;right:0;z-index:5;padding:calc(env(safe-area-inset-top,0px) + 8px) 14px 8px;background:var(--bg);display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+#bar[hidden]{display:none}
+#bar button{background:none;border:0;color:var(--ti);padding:6px 4px}
+#pg{flex:1;height:3px;background:var(--line);border-radius:3px;overflow:hidden}#pg b{display:block;height:100%;width:0;background:var(--or);transition:width .5s}
+#wait{max-width:none;min-height:100vh;padding-top:9vh;text-align:center;color:var(--cr);background:radial-gradient(ellipse at 50% 0,#923E53,#702C3C 55%,#43161f);position:relative;overflow:hidden}
+#wait h1{color:var(--cr)}#wait>*{position:relative}
+.dot{position:absolute!important;bottom:-12px;border-radius:50%;background:var(--or);opacity:.28;animation:up linear infinite}
+@keyframes up{to{transform:translateY(-115vh)}}
+.door{position:relative;width:min(300px,78vw);height:400px;margin:26px auto 24px;border-radius:150px 150px 6px 6px;border:2px solid var(--or);overflow:hidden;background:radial-gradient(circle at 50% 70%,#f6dfae,#C6A36A 70%)}
+.door i{position:absolute;top:0;bottom:0;width:50%;background:linear-gradient(#5a2230,#702C3C);transition:transform 2.4s cubic-bezier(.6,0,.2,1)}
+.door i:first-child{left:0;transform-origin:left;border-right:1px solid var(--or)}.door i:last-child{right:0;transform-origin:right}
+.door.o i:first-child{transform:perspective(700px) rotateY(-100deg)}.door.o i:last-child{transform:perspective(700px) rotateY(100deg)}
+.cd{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:8px;padding-top:70px;transition:opacity .8s}
+.door.o .cd{opacity:0}
+.cd div{width:56px}.cd b{display:block;font:600 1.9rem "Cormorant Garamond",serif;color:#f3e3c4}.cd small{font-size:.7rem;color:#e9c8c9}
+#wait .sc{color:var(--ro)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px 18px 18px 4px;padding:20px 16px;min-height:112px;text-align:left;font-family:"Cormorant Garamond",serif;font-size:1.28rem;line-height:1.2;color:var(--ti)}
+.card.seen{border-color:var(--or)}.card:nth-child(even){border-radius:18px 18px 4px 18px}
+.scrap{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:62px;grid-auto-flow:dense;gap:10px;margin:22px 0}
+.ph{position:relative;border:0;padding:0;background:var(--ro);border-radius:3px;overflow:hidden;grid-column:span 2;grid-row:span 2;transform:rotate(var(--r,0deg));box-shadow:0 0 0 5px #fff,0 2px 8px #0003}
+.ph:nth-child(6n+1){grid-column:span 4;grid-row:span 3;--r:-1.2deg}.ph:nth-child(3n+2){--r:1.5deg}.ph:nth-child(5n+4){grid-column:span 3}
+.ph img,.ph video{width:100%;height:100%;object-fit:cover;display:block}
+.ph.vd::after{content:"▶";position:absolute;right:8px;bottom:8px;width:32px;height:32px;border-radius:50%;background:#702C3Ccc;color:#FAF5EF;display:flex;align-items:center;justify-content:center;font-size:.8rem}
+.note{border-left:3px solid var(--or);background:var(--card);padding:14px 16px;margin:14px 0;border-radius:0 12px 12px 0}
+.paper{background:#FAF5EF;color:#38282B;padding:30px 24px;border-radius:4px;box-shadow:0 6px 24px #0003;white-space:pre-line;font-family:"Cormorant Garamond",Georgia,serif;font-size:1.2rem;line-height:1.65;border-top:4px solid var(--or)}
+.paper .sc{display:block;color:#702C3C;margin-top:14px}
+.pl{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;text-align:center}
+.pl .row{display:flex;gap:12px;align-items:center;margin-top:14px}.pl input{flex:1;accent-color:#923E53}
+.pb{width:58px;height:58px;border-radius:50%;border:0;background:var(--bd);color:var(--cr);font-size:1.2rem}
+.n29{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin-top:20px}
+.n29 button{aspect-ratio:1;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ti);font:600 1.25rem "Cormorant Garamond",serif}
+.n29 button.seen{background:var(--bd);color:var(--cr);border-color:var(--bd)}
+#ov{position:fixed;inset:0;z-index:9;background:#1e0a10ee;display:flex;align-items:center;justify-content:center;padding:24px}
+#ov[hidden]{display:none}
+.msg{background:#FAF5EF;color:#38282B;border-radius:18px;padding:30px 24px;max-width:420px;text-align:center;border:1px solid var(--or);animation:fp .6s ease both;font-family:"Cormorant Garamond",serif;font-size:1.35rem;line-height:1.5}
+.msg small{display:block;font:.8rem "DM Sans",sans-serif;color:#923E53;margin-bottom:10px}
+@keyframes fp{from{transform:perspective(600px) rotateY(90deg);opacity:0}}
+#ov img,#ov video{max-width:100%;max-height:78vh;border-radius:4px;display:block;margin:auto}
+#ov .cap{color:#FAF5EF;text-align:center;margin-top:10px}
+label{display:block;margin:20px 0 6px;font-family:"Cormorant Garamond",serif;font-size:1.2rem;color:var(--ti)}
+textarea{width:100%;min-height:84px;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--card);color:var(--ink);font:inherit}
+.fin{margin-top:30px;padding-top:24px;border-top:1px solid var(--or);font-family:"Cormorant Garamond",serif;font-size:1.25rem}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head>
+<body>
+<header id="bar" hidden><button id="back">‹ Accueil</button><span id="pg"><b></b></span></header>
+<main id="app"></main><div id="ov" hidden></div>
+<script>
+/* ============ CONFIGURATION ============ */
+const C={
+ date:"2026-11-29T00:00:00+01:00",
+ prenom:"Astride",
+ whatsapp:"2290197827626",
+ motdepasse:"", // vide = pas de mot de passe (protection légère, pas une vraie sécurité)
+ // Médias : ["nom-du-fichier","légende"] (légende vide = aucune). .mp4/.webm/.mov = vidéo, sinon photo.
+ // Les fichiers doivent être à la racine du dépôt. Un fichier absent n’apparaît pas.
+ photos:[
+  ["plage.mp4","Notre moment à la plage"],
+  ["pagne-rouge.jpg","Assortis, comme toujours"],
+  ["pagne-vert.jpg","En brousse, bras enlacés"],
+  ["ascenseur.jpg","Un bisou volé dans l’ascenseur"],
+  ["eglise.jpg","Une belle sortie, ensemble"],
+  ["ena-couple.jpg","Là où tout a commencé : l’ENA"],
+  ["ena-elle-vert.jpg","Toi à l’ENA, ton plus beau sourire"],
+  ["ena-elle-bleu.jpg","En uniforme, concentrée"],
+  ["bague.jpg","Un souvenir qui brille..."],
+  ["rose.jpg","Simple et belle"],
+  ["fete.jpg","En fête, toujours complices"],
+  ["enfance.jpg","Petite Astride déjà..."],
+  ["nouvelle-1.jpg",""],["nouvelle-2.jpg",""],["nouvelle-3.jpg",""],["nouvelle-4.jpg",""],
+  ["nouvelle-5.jpg",""],["nouvelle-6.jpg",""],["nouvelle-7.jpg",""]
+ ],
+ rires:{
+  photos:[
+   ["selfie-bouche.jpg","Ta fameuse bouche en cœur"],
+   ["nouvelle-10.jpg",""],
+   ["eventail.jpg","Ta grimace avec l’éventail"],
+   ["mimiques.mp4","Tes mimiques, je n’en peux plus 😂"],
+   ["bisou-maison.mp4","Un bisou à la maison"],
+   ["nouvelle-8.jpg",""],["nouvelle-9.jpg",""]
+  ],
+  anecdotes:[
+   "Il y a des souvenirs qui n’ont pas besoin de longues explications pour nous faire sourire.",
+   "Certaines discussions restent dans la mémoire, même longtemps après.",
+   "Et puis il y a DCT… trois lettres qui ont leur propre histoire. 😅🤣"
+  ]
+ },
+ lettre:`Mon Évidence,
+
+Lakata chou,
+
+Aujourd’hui, c’est ton jour. Et avant toute chose, je veux te souhaiter un merveilleux anniversaire.
+
+Je repense souvent à nos débuts. Qui aurait cru que deux personnes qui se croisaient en uniforme à l’ENA finiraient un jour en couple ? À l’époque, nous ne pouvions probablement pas imaginer tout ce que cette rencontre allait devenir.
+
+Je me souviens de nos rires, de cette facilité que nous avions à nous comprendre, de nos discussions qui se prolongeaient jusqu’au petit matin. Nous avions toujours quelque chose à nous raconter. Même lorsque nous pensions avoir épuisé les sujets, nous trouvions encore une raison de continuer à parler.
+
+Cette complicité avait quelque chose de particulier. Et je ne l’ai pas oubliée.
+
+Je ne vais pas prétendre que tout est resté comme avant. Notre histoire a connu des moments difficiles et certaines choses ont changé. Il y a des attitudes, des paroles et des distances qui me font mal. Parfois, j’ai l’impression que nous ne savons même plus nous parler sans nous blesser.
+
+Je ne veux pas faire comme si cela n’existait pas. Mais je ne veux pas non plus faire de ton anniversaire le procès de notre relation.
+
+Je sais que je ne suis pas parfait. J’ai certainement eu des réactions, des paroles et des comportements qui ont contribué à cette situation. Je suis prêt à reconnaître ma part et à faire des efforts.
+
+Mais j’aimerais aussi que nous puissions retrouver cette considération, cette douceur et cette envie de nous comprendre qui nous rapprochaient au début. J’aimerais que nos désaccords ne deviennent pas des occasions de nous menacer de séparation ou de nous faire du mal.
+
+J’aimerais que nos engagements soient traités avec considération, même lorsque nous sommes en colère. J’aimerais aussi que nous puissions parler librement de nos attentes, de nos différences et de notre intimité, sans pression, sans jugement et sans que l’un de nous se sente obligé de renoncer à ce qu’il est.
+
+Je ne te demande pas de devenir une autre personne. Je ne te demande pas non plus que tout change en un jour.
+
+Je voudrais simplement que nous acceptions tous les deux de faire des efforts : apprendre à mieux communiquer, respecter nos différences, reconnaître nos erreurs, nous écouter réellement et ne jamais considérer l’autre comme acquis.
+
+Je ne veux pas que nous restions ensemble uniquement parce que nous avons de beaux souvenirs. Je veux que nous ayons encore de belles raisons de choisir de construire ensemble.
+
+De mon côté, je suis prêt à me remettre en question et à faire ma part. J’aimerais simplement sentir que tu souhaites, toi aussi, prendre soin de cette relation.
+
+Si ton cœur en a aussi envie, j’aimerais que nous nous donnions une vraie chance de nous retrouver. Pas pour redevenir exactement ceux que nous étions à l’ENA, mais pour devenir deux personnes qui savent mieux s’aimer, se comprendre et se respecter.
+
+Je ne veux pas seulement retrouver le couple de nos souvenirs. Je veux découvrir celui que nous pouvons encore devenir.
+
+Mais aujourd’hui, je veux surtout célébrer la personne que tu es.
+
+Je te souhaite la santé, la paix intérieure, la réussite dans tes projets, de belles opportunités et beaucoup de raisons de sourire. Que cette nouvelle année de ta vie t’apporte ce que ton cœur espère et même de belles surprises auxquelles tu ne t’attends pas.
+
+Merci pour les beaux moments, pour ton attention dans ces instants où tu me fais sentir que je compte, pour ton amour et pour tous ces souvenirs qui ont une place particulière dans mon cœur.
+
+Joyeux anniversaire, Lakata chou.
+
+Profite de ta journée. Tu le mérites.`,
+ signature:"Avec tendresse,",
+ audio:"message-vocal.mp3", // fichier à la racine du dépôt
+ raisons:[
+  ["Ce que j’aime chez toi","Ton attention, dans ces moments où tu me fais sentir que je compte."],
+  ["Ce que j’aime chez toi","Cette capacité que tu as de montrer ton amour, même sans forcément faire de grands discours."],
+  ["Ce que j’aime chez toi","Les petites attentions qui, parfois, valent bien plus que de longues déclarations."],
+  ["Ce que j’aime chez toi","Cette part de toi qui sait être douce et attachante."],
+  ["Ce que j’aime chez toi","Le bonheur que me procurent les moments où je retrouve cette complicité entre nous."],
+  ["Nos souvenirs","Qui aurait cru que deux personnes qui se voyaient en uniforme à l’ENA finiraient en couple ?"],
+  ["Nos souvenirs","Nos débuts avaient quelque chose de particulier. Nous avions tellement de choses à nous raconter."],
+  ["Nos souvenirs","Ces discussions qui nous accompagnaient jusqu’au petit matin."],
+  ["Nos souvenirs","Cette époque où nous trouvions toujours un nouveau sujet pour continuer à parler."],
+  ["Nos souvenirs","Nos fous rires, quand il suffisait de peu pour nous faire rire."],
+  ["Nos souvenirs","Notre rencontre : un souvenir que je garde précieusement."],
+  ["Nos souvenirs","Cette complicité que nous avions et qui rendait nos moments si naturels."],
+  ["Nos souvenirs","Ces premiers instants où nous apprenions à nous découvrir, sans savoir jusqu’où cela nous mènerait."],
+  ["Notre petit langage","DCT… 😅🤣 Je ne vais quand même pas expliquer cette histoire ici !"],
+  ["Notre petit langage","Si je te dis DCT, j’attends une réponse sur WhatsApp. 😂"],
+  ["Notre petit langage","Il y a des souvenirs qui n’ont besoin que de trois lettres pour revenir."],
+  ["Notre petit langage","Certaines discussions restent dans la mémoire, même longtemps après."],
+  ["Notre petit langage","Nos souvenirs ont parfois leur propre langage. DCT en est la preuve."],
+  ["Mes souhaits pour toi","Une santé solide et une vie remplie de sérénité."],
+  ["Mes souhaits pour toi","La réussite dans les projets qui te tiennent à cœur."],
+  ["Mes souhaits pour toi","Des jours où tu n’auras pas besoin de cacher ton sourire."],
+  ["Mes souhaits pour toi","De belles opportunités et le courage de saisir celles qui se présenteront à toi."],
+  ["Mes souhaits pour toi","Un bonheur qui ne dépend pas uniquement des circonstances, mais aussi de la paix que tu trouveras en toi."],
+  ["Ce que j’espère","J’aimerais que nous retrouvions le plaisir de parler pendant des heures."],
+  ["Ce que j’espère","J’aimerais que nos conversations redeviennent des rendez-vous que nous attendons avec impatience."],
+  ["Ce que j’espère","J’aimerais que nous puissions rire ensemble sans nous soucier du temps."],
+  ["Ce que j’espère","J’aimerais que l’écoute retrouve sa place entre nous."],
+  ["Ce que j’espère","J’aimerais que nos désaccords ne nous fassent jamais oublier le respect que nous nous devons."],
+  ["Ce que j’espère","Et si nous avons encore de belles pages à écrire, j’espère qu’elles seront remplies de sincérité, de douceur et de complicité."]
+ ],
+ final:`Notre histoire n’a pas besoin d’être parfaite pour continuer à être précieuse. Elle mérite simplement que nous prenions soin de ce que nous construisons, avec sincérité, patience et attention.`,
+ fin:"Joyeux anniversaire, ma Petite Maman. ❤️"
+};
+/* ============ FIN CONFIGURATION ============ */
+
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const T=new Date(C.date).getTime(),seen=new Set();let cur="";
+const R=[["r1","Nos premiers chapitres"],["r2","Nos fous rires"],["r3","Ce que mon cœur veut te dire"],["r4","Écoute-moi"],["r5","29 raisons de sourire"],["r6","Ce que nous devons nous dire"]];
+const ALL=[...C.photos,...C.rires.photos];
+const isV=f=>/\.(mp4|webm|mov|m4v)$/i.test(f);
+const th=(p,i)=>{const f=p[0],c=p[1]||"",v=isV(f);return `<button class="ph${v?" vd":""}" data-ph="${i}" aria-label="${c||"Souvenir"}">${v?`<video src="${f}#t=0.1" muted playsinline preload="metadata" onerror="this.parentNode.remove()"></video>`:`<img src="${f}" alt="${c}" loading="lazy" onerror="this.parentNode.remove()">`}</button>`};
+const gal=(a,k)=>`<div class="scrap">${a.map((p,i)=>th(p,k+i)).join("")}</div>`;
+
+$("#app").innerHTML=`
+<section class="v" id="gate" style="text-align:center;padding-top:22vh"><h2>Un mot de passe ?</h2><p>Cette page est un cadeau privé.</p><input id="pw" type="password" aria-label="Mot de passe" style="padding:12px;border-radius:12px;border:1px solid var(--line);font:inherit;background:var(--card);color:var(--ink)"><p id="pe" style="color:var(--bd2);min-height:1.7em"></p><button class="btn" id="pb">Entrer</button></section>
+
+<section class="v" id="wait"><p class="sc">Pour ${C.prenom}</p><h1 id="wt">Quelque chose de spécial t’attend, ${C.prenom}...</h1><p id="ws">Une petite porte s’ouvrira pour toi le 29 novembre.</p>
+<div class="door" id="door"><i></i><i></i><div class="cd" id="cd"><div><b id="d">0</b><small>jours</small></div><div><b id="h">0</b><small>heures</small></div><div><b id="m">0</b><small>minutes</small></div><div><b id="s">0</b><small>secondes</small></div></div></div>
+<button class="btn" id="go" disabled style="background:var(--or);color:#38282B">Patience, mon Évidence... ❤️</button></section>
+
+<section class="v" id="home"><h1>${C.prenom}, cette histoire mérite encore de belles pages...</h1><p>Il y a des personnes qui rendent certains souvenirs inoubliables. Aujourd’hui, j’aimerais te faire revivre quelques-uns des nôtres. Ce petit univers est pour toi. Prends ton temps, souris, souviens-toi et profite de chaque instant.</p><div class="g2">${R.map(r=>`<button class="card" data-go="${r[0]}">${r[1]}</button>`).join("")}</div></section>
+
+<section class="v" id="r1"><h2>Tout a commencé quelque part...</h2><p>Qui aurait cru que deux personnes qui se croisaient en uniforme à l’ENA finiraient un jour en couple ? En regardant ces images, je repense à cette rencontre et à tous les moments qui ont suivi. Voici quelques fragments de notre histoire.</p>${gal(C.photos,0)}</section>
+
+<section class="v" id="r2"><h2>Nos fous rires, nos petites folies...</h2><p>Parce qu’aimer, ce n’est pas seulement échanger de beaux mots. C’est aussi rire pour rien, se taquiner, trouver des sujets de discussion à n’importe quelle heure et profiter de ces instants qui rendent la vie plus légère.</p>${gal(C.rires.photos,C.photos.length)}${C.rires.anecdotes.map(a=>`<div class="note">${a}</div>`).join("")}</section>
+
+<section class="v" id="r3"><h2>Quelques mots que je garde parfois au fond de moi...</h2><div class="paper">${C.lettre}<span class="sc">${C.signature}</span></div></section>
+
+<section class="v" id="r4"><h2>Cette fois, je préfère te le dire avec ma voix...</h2><div class="pl" id="pl">${C.audio?`<audio id="au" src="${C.audio}" preload="metadata"></audio><button class="pb" id="ap" aria-label="Lecture">▶</button><div class="row"><small id="at">0:00</small><input type="range" id="ar" min="0" max="100" value="0" aria-label="Progression"><small id="ad">0:00</small></div><button class="btn alt" id="arp" style="margin-top:16px">Réécouter depuis le début</button><p id="ae" style="color:var(--bd2)"></p>`:`<p class="sc">Mon message vocal arrive bientôt…</p>`}</div></section>
+
+<section class="v" id="r5"><h2>29 petites choses que j’aimerais te rappeler.</h2><p>Touche une carte. Elle s’ouvre pour toi.</p><div class="n29">${C.raisons.map((r,i)=>`<button data-c="${i}" aria-label="Carte ${i+1}">${i+1}</button>`).join("")}</div></section>
+
+<section class="v" id="r6"><h2>Ce que nous devons nous dire</h2><p>Je ne veux pas que nous évitions les sujets difficiles. Je voudrais que nous apprenions à les aborder sans nous faire du mal.</p>
+<div class="note">J’aimerais que nous puissions parler de nos désaccords sans brandir systématiquement la séparation.<br><br>J’aimerais que nos engagements soient traités avec considération, même lorsque nous sommes en colère.<br><br>J’aimerais aussi que nous puissions parler librement de notre intimité, de nos attentes et de nos différences, sans pression ni jugement.<br><br>Je ne te demande pas d’être d’accord avec tout ce que je ressens. Je te demande simplement que nous puissions nous écouter et chercher ensemble à comprendre ce qui nous manque.</div>
+<p>Si tu en as envie, j’aimerais connaître ton ressenti. Il n’y a pas de bonne ou de mauvaise réponse. Tu peux répondre librement, ou ne pas répondre du tout.</p>
+<label for="q0">Comment aimerais-tu que nous gérions nos disputes sans menacer systématiquement notre relation ?</label><textarea id="q0"></textarea>
+<label for="q1">Qu’est-ce qui pourrait nous aider à retrouver une intimité dans laquelle nous nous sentons tous les deux respectés et épanouis ?</label><textarea id="q1"></textarea>
+<label for="q2">Quelles sont les choses que chacun de nous devrait changer pour que notre relation soit plus saine ?</label><textarea id="q2"></textarea>
+<p style="margin-top:20px"><button class="btn" id="qs">M’envoyer mes réponses</button> <button class="btn alt" id="qk">Continuer sans répondre</button></p>
+<p id="qe" style="color:var(--bd2)"></p>
+<div class="fin" id="fin" hidden><p>${C.final}</p><p class="sc" style="font-size:1.8rem;color:var(--ti)">${C.fin}</p></div></section>`;
+
+function show(id){cur=id;$$(".v").forEach(v=>v.classList.toggle("on",v.id===id));scrollTo(0,0);
+ $("#bar").hidden=!/^(home|r\d)$/.test(id);$("#back").textContent=id==="home"?"‹ Début":"‹ Accueil";
+ if(/^r\d$/.test(id)){seen.add(id);$$(".card").forEach(c=>c.classList.toggle("seen",seen.has(c.dataset.go)))}
+ $("#pg b").style.width=seen.size/6*100+"%"}
+$("#back").onclick=()=>show(cur==="home"?"wait":"home");
+
+document.addEventListener("click",e=>{const t=e.target.closest("[data-go],[data-ph],[data-c]");if(!t)return;const o=$("#ov");
+ if(t.dataset.go){show(t.dataset.go);return}
+ if(t.dataset.ph!==undefined){const p=ALL[+t.dataset.ph],f=p[0],c=p[1]||"",cap=c?`<p class="cap">${c}</p>`:"";
+  o.innerHTML=isV(f)?`<div><video src="${f}" controls autoplay playsinline></video>${cap}</div>`:`<div><img src="${f}" alt="${c}">${cap}</div>`}
+ else{const r=C.raisons[+t.dataset.c];t.classList.add("seen");o.innerHTML=`<div class="msg"><small>${r[0]}</small>${r[1]}</div>`}
+ o.hidden=false});
+$("#ov").onclick=e=>{if(e.target.tagName==="VIDEO")return;$("#ov").hidden=true;$("#ov").innerHTML=""};
+
+const f2=n=>String(n).padStart(2,"0");let iv;
+function tick(){const d=T-Date.now(),open=d<=0||location.hash==="#apercu",b=$("#go");
+ if(open){if(!b.dataset.o){b.dataset.o="1";$("#wt").textContent=`Joyeux anniversaire, ${C.prenom} !`;$("#ws").textContent="Ta petite porte est ouverte.";$("#door").classList.add("o");b.disabled=false;b.textContent="ENTRER DANS TON UNIVERS";b.style.background="var(--or)"}clearInterval(iv);return}
+ $("#d").textContent=Math.floor(d/864e5);$("#h").textContent=f2(Math.floor(d/36e5)%24);$("#m").textContent=f2(Math.floor(d/6e4)%60);$("#s").textContent=f2(Math.floor(d/1e3)%60)}
+$("#go").onclick=()=>show("home");
+addEventListener("hashchange",tick);
+for(let i=0;i<14;i++){const s=document.createElement("span");s.className="dot";const z=3+Math.random()*7;s.style.cssText=`left:${Math.random()*100}%;width:${z}px;height:${z}px;animation-duration:${14+Math.random()*18}s;animation-delay:-${Math.random()*20}s`;$("#wait").append(s)}
+
+const au=$("#au");
+if(au){const f=s=>isFinite(s)?Math.floor(s/60)+":"+f2(Math.floor(s%60)):"0:00";
+ $("#ap").onclick=()=>au.paused?au.play().catch(()=>$("#ae").textContent="Impossible de lire l’audio. Réessaie dans un instant."):au.pause();
+ au.onplay=()=>$("#ap").textContent="❚❚";au.onpause=()=>$("#ap").textContent="▶";
+ au.onerror=()=>{$("#pl").innerHTML=`<p class="sc">Mon message vocal arrive bientôt…</p>`};
+ au.onloadedmetadata=()=>$("#ad").textContent=f(au.duration);
+ au.ontimeupdate=()=>{$("#at").textContent=f(au.currentTime);$("#ar").value=au.duration?au.currentTime/au.duration*100:0};
+ $("#ar").oninput=e=>{if(au.duration)au.currentTime=e.target.value/100*au.duration};
+ $("#arp").onclick=()=>{au.currentTime=0;au.play().catch(()=>{})}}
+
+const Q=["Gestion des disputes","Intimité et attentes","Changements pour une relation plus saine"];
+try{[0,1,2].forEach(i=>$("#q"+i).value=localStorage.getItem("astride_q"+i)||"")}catch(e){}
+$$("textarea").forEach((t,i)=>t.oninput=()=>{try{localStorage.setItem("astride_q"+i,t.value)}catch(e){}});
+$("#qk").onclick=()=>{$("#fin").hidden=false;$("#fin").scrollIntoView({behavior:"smooth"})};
+$("#qs").onclick=()=>{const a=[0,1,2].map(i=>$("#q"+i).value.trim());
+ if(!a.some(Boolean)){$("#qe").textContent="Tu n’as encore écrit aucune réponse. Tu peux aussi continuer sans répondre.";return}
+ const m=`Bonjour, voici mes réponses 💌\n\n`+Q.map((q,i)=>`${q} : ${a[i]||"Je préfère ne pas répondre."}`).join("\n\n");
+ window.open("https://wa.me/"+C.whatsapp+"?text="+encodeURIComponent(m),"_blank");$("#qk").click()};
+
+function start(){show("wait");tick();iv=setInterval(tick,1000)}
+if(C.motdepasse){show("gate");$("#pb").onclick=()=>$("#pw").value===C.motdepasse?start():$("#pe").textContent="Ce n’est pas le bon mot de passe."}else start();
+</script></body></html>
